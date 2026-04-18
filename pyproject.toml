@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "procstream"
+dynamic = ["version"]
+description = "Stream subprocess output with timeouts, tree-kill, and sane defaults."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "farkhad", email = "bennett@frkhd.com" }]
+keywords = ["subprocess", "streaming", "process", "shell", "tree-kill", "timeout"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: System :: Shells",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/f4rkh4d/procstream"
+Issues = "https://github.com/f4rkh4d/procstream/issues"
+Source = "https://github.com/f4rkh4d/procstream"
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[tool.hatch.version]
+path = "src/procstream/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/procstream"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/procstream", "tests", "README.md", "LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
