@@ -6,14 +6,13 @@ and marked accordingly.
 """
 
 import os
-import signal
 import sys
 import time
 from textwrap import dedent
 
 import pytest
 
-from procstream import Line, Process, Result, TimeoutExpired, run
+from procstream import Line, Result, TimeoutExpired, run
 
 IS_WINDOWS = sys.platform == "win32"
 PY = sys.executable
