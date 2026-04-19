@@ -15,6 +15,23 @@ for line in run(["pytest", "-q"]).stream():
     print("!!" if line.is_stderr else "  ", line.text)
 ```
 
+## Demo
+
+```
+$ python example.py
+
+   tests/test_core.py ..................................         [100%]
+   42 passed in 2.37s
+!! WARNING: deprecated flag --cov-branch, use --cov-branch-only
+   all good.
+
+-- timeout example --
+!! sleep: interrupted by SIGTERM after 3.0s
+killed tree (pid 48213) after 3s, captured 0 bytes of stdout.
+```
+
+*(stdout in grey, stderr prefixed `!!` in red — your terminal, your colors.)*
+
 ## Why
 
 `subprocess.run()` buffers everything until the child exits. `subprocess.Popen`
