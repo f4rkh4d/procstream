@@ -159,6 +159,11 @@ def test_env_replaces_completely():
     # Pass an env that doesn't carry CUSTOM_VAR but needs PATH on Windows for
     # python to work — supply both explicitly.
     extra = {"PATH": os.environ.get("PATH", ""), "CUSTOM_VAR": "replaced-env"}
+    if sys.platform == "win32":
+        # python's startup needs SystemRoot to initialize HashRandomization
+        for k in ("SystemRoot", "TEMP", "USERPROFILE"):
+            if k in os.environ:
+                extra[k] = os.environ[k]
     r = run(_py(script), env=extra).wait()
     assert "CUSTOM=replaced-env" in r.stdout
 
